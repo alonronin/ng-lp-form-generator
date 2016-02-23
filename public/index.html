@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngLpFormGenerator">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Loopback form generator</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+</head>
+<body>
+
+<div class="container-fluid" ng-controller="Ctrl as vm">
+  <form name="vm.form" novalidate>
+  	<legend>{{vm.title}}</legend>
+
+  	<div class="form-group" ng-class="{'has-error': vm.form.name.$invalid}">
+  		<label for="name">Name</label>
+  		<input type="text" class="form-control" name="name" id="name" ng-model="vm.data.name" required>
+  	</div>
+
+    <div class="form-group" ng-class="{'has-error': vm.form.email.$invalid}">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" id="email" ng-model="vm.data.email">
+    </div>
+
+  	<button type="submit" class="btn btn-primary" ng-disabled="vm.form.$invalid">Submit</button>
+  </form>
+
+  <legend>Angular Form</legend>
+  <code><pre>{{vm.data | json}}</pre></code>
+
+  <br>
+
+  <legend>Loopback Contact model</legend>
+  <code><pre>{{vm.model | json}}</pre></code>
+</div>
+
+<script src="js/vendor.js"></script>
+<script src="js/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "name": "address",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "number": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "pob": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string",
+      "required": false
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": false
+    },
+    "timestamp": {
+      "type": "date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "_note": {
+      "type": "embedsOne",
+      "model": "note",
+      "property": "notes",
+      "option": {
+        "validate": true,
+        "forceId": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

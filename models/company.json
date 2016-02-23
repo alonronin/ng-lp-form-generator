@@ -1,0 +1,102 @@
+{
+  "name": "company",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "date",
+      "defaultFn": "now"
+    },
+    "referredby": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "owner": {
+      "type": "hasOne",
+      "model": "kduser",
+      "foreignKey": ""
+    },
+    "groups": {
+      "type": "hasAndBelongsToMany",
+      "model": "group"
+    },
+    "_addresses": {
+      "type": "embedsMany",
+      "model": "address",
+      "property": "addresses",
+      "option": {
+        "validate": "true",
+        "forceId": "true"
+      }
+    },
+    "_phones": {
+      "type": "embedsMany",
+      "model": "phone",
+      "property": "phones",
+      "option": {
+        "validate": "true",
+        "forceId": "true"
+      }
+    },
+    "_emails": {
+      "type": "embedsMany",
+      "model": "email",
+      "property": "emails",
+      "option": {
+        "validate": "true",
+        "forceId": "true",
+        "idInjection": true
+      }
+    },
+    "_socials": {
+      "type": "embedsMany",
+      "model": "social",
+      "property": "socials",
+      "option": {
+        "validate": "true",
+        "forceId": "true"
+      }
+    },
+    "_notes": {
+      "type": "embedsMany",
+      "model": "note",
+      "property": "notes",
+      "option": {
+        "validate": "true",
+        "forceId": "true"
+      }
+    },
+    "deals": {
+      "type": "hasAndBelongsToMany",
+      "model": "deal",
+      "foreignKey": ""
+    },
+    "wanteds": {
+      "type": "hasAndBelongsToMany",
+      "model": "wanted"
+    },
+    "contacts": {
+      "type": "hasAndBelongsToMany",
+      "model": "contact",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,116 @@
+{
+  "name": "contact",
+  "plural": "contacts",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "middleName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "jobTitle": {
+      "type": "string"
+    },
+    "oldId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "owner": {
+      "type": "hasOne",
+      "model": "kduser",
+      "foreignKey": ""
+    },
+    "groups": {
+      "type": "hasAndBelongsToMany",
+      "model": "group"
+    },
+    "_addresses": {
+      "type": "embedsMany",
+      "model": "address",
+      "property": "addresses",
+      "option": {
+        "validate": true,
+        "forceId": true
+      }
+    },
+    "_phones": {
+      "type": "embedsMany",
+      "model": "phone",
+      "property": "phones",
+      "option": {
+        "validate": false,
+        "forceId": false
+      }
+    },
+    "_emails": {
+      "type": "embedsMany",
+      "model": "email",
+      "property": "emails",
+      "option": {
+        "validate": true,
+        "forceId": true
+      }
+    },
+    "_socials": {
+      "type": "embedsMany",
+      "model": "social",
+      "property": "socials",
+      "option": {
+        "validate": true,
+        "forceId": true
+      }
+    },
+    "_notes": {
+      "type": "embedsMany",
+      "model": "note",
+      "property": "notes",
+      "option": {
+        "validate": true,
+        "forceId": true
+      }
+    },
+    "companies": {
+      "type": "hasAndBelongsToMany",
+      "model": "company",
+      "foreignKey": ""
+    },
+    "deals": {
+      "type": "hasAndBelongsToMany",
+      "model": "deal",
+      "foreignKey": ""
+    },
+    "wanteds": {
+      "type": "hasAndBelongsToMany",
+      "model": "wanted"
+    },
+    "followUps": {
+      "type": "hasMany",
+      "model": "followup",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
